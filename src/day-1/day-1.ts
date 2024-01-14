@@ -1,4 +1,4 @@
-const { readFile } = require('../utils/read-file')
+import { readFile } from '../utils/read-file'
 
 const input = readFile('./data/input.txt')
 
