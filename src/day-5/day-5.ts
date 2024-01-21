@@ -4,16 +4,18 @@ const input = readFile('./data/input.txt').split('\n')
 
 class Day5 {
     isNicePart1(value: string): boolean {
-        const hasThreeVowels = Boolean(value.match(/.*[aeiou].*[aeiou].*[aeiou].*/))
-        if (!hasThreeVowels) return false;
+        const hasThreeVowels = Boolean(
+            value.match(/.*[aeiou].*[aeiou].*[aeiou].*/)
+        )
+        if (!hasThreeVowels) return false
 
         const hasDoubleLetter = Boolean(value.match(/(.)\1/))
-        if (!hasDoubleLetter) return false;
+        if (!hasDoubleLetter) return false
 
-        const hasDisallowedSubstrings = Boolean(value.match(/ab|cd|pq|xy/));
-        if (hasDisallowedSubstrings) return false;
+        const hasDisallowedSubstrings = Boolean(value.match(/ab|cd|pq|xy/))
+        if (hasDisallowedSubstrings) return false
 
-        return true;
+        return true
     }
 
     solvePart1(values: [string]): number {
@@ -21,18 +23,17 @@ class Day5 {
     }
 
     isNicePart2(value: string): boolean {
-        const hasDoubleLettersPair = Boolean(value.match(/(\w{2}).*?(\1)/));
-        if (!hasDoubleLettersPair) return false;
+        const hasDoubleLettersPair = Boolean(value.match(/(\w{2}).*?(\1)/))
+        if (!hasDoubleLettersPair) return false
 
         let hasPalindrome = false
         for (let i = 0; i < value.length - 2; i += 1) {
             if (value.slice(i, i + 2) === `${value[i + 2]}${value[i + 1]}`) {
-                hasPalindrome = true;
-                break;
+                hasPalindrome = true
+                break
             }
-
         }
-        return hasPalindrome;
+        return hasPalindrome
     }
 
     solvePart2(values: [string]): number {
