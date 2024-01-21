@@ -14,6 +14,8 @@ For example:
 -   toggle 0,0 through 999,0 would toggle the first line of 1000 lights, turning off the ones that were on, and turning on the ones that were off.
 -   turn off 499,499 through 500,500 would turn off (or leave off) the middle four lights.
 
+After following the instructions, how many lights are lit?
+
 --- Part Two ---
 
 You just finish implementing your winning light pattern when you realize you mistranslated Santa's message from Ancient Nordic Elvish.

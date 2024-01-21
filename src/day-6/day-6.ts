@@ -77,7 +77,6 @@ class Day6 {
                 for (let i = xA; i <= xB; i += 1) {
                     for (let j = yA; j <= yB; j += 1) {
                         if (grid[i][j] > 0) grid[i][j] -= 1
-
                     }
                 }
             }
