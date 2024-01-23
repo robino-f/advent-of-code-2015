@@ -3,7 +3,6 @@ import { readFile } from '../utils/read-file'
 const input = readFile('./data/input.txt').split('\n')
 
 class Day8 {
-
     solvePart1(sequences: string[]): number {
         let sum = 0
 
