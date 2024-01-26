@@ -5,7 +5,7 @@ const input = readFile('./data/input.txt')
 class Day10 {
     applyLookAndSay(value: string): string {
         let newValue = ''
-        let serie = 0;
+        let serie = 0
         let lastChar = value[0]
         for (let i = 0; i < value.length; i += 1) {
             const char = value[i]
