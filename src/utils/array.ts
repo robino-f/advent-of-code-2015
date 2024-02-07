@@ -3,4 +3,6 @@ const createGrid = (value: unknown, x: number = 1000, y: number = 1000) =>
         .fill(value)
         .map(() => Array(x).fill(value))
 
-export { createGrid }
+const sum = (array: number[]) => array.reduce((acc, v) => acc + v, 0)
+
+export { createGrid, sum }

@@ -23,7 +23,7 @@
 -   [x] day 21
 -   [x] day 22
 -   [x] day 23
--   [ ] day 24
+-   [x] day 24
 -   [ ] day 25
 
 run files using `ts-node`
