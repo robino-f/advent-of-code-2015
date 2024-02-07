@@ -63,7 +63,7 @@ class Day22 {
             armor: 0,
             damage: 0,
             mana: 0,
-            heal: 0
+            heal: 0,
         }
 
         for (const spell of spellsUsed) {
@@ -92,7 +92,7 @@ class Day22 {
         if (!part1 && turn % 2 === 0) effects.heal -= 1
         const totalCost = spellsUsed.reduce((acc, spell) => acc + spell.cost, 0)
 
-        if ((remainingHp + effects.heal) < 1 || totalCost > this.minCost) {
+        if (remainingHp + effects.heal < 1 || totalCost > this.minCost) {
             return []
         } else if (remainingBossHp - effects.damage < 1) {
             if (totalCost < this.minCost) {
@@ -103,15 +103,18 @@ class Day22 {
         }
 
         if (turn % 2 === 0) {
-            const playableSpells = this.spells.filter(
-                ({ cost, name }) => {
-                    if (cost > remainingMana + effects.mana) return false;
-                    return !spellsUsed.some((spell) => spell.name === name && spell.duration)
-                }
-            )
+            const playableSpells = this.spells.filter(({ cost, name }) => {
+                if (cost > remainingMana + effects.mana) return false
+                return !spellsUsed.some(
+                    (spell) => spell.name === name && spell.duration
+                )
+            })
 
             const combinations = playableSpells.flatMap((spell) => {
-                let nextSpells = [...spellsUsed.map((s) => ({ ...s })), { ...spell }]
+                let nextSpells = [
+                    ...spellsUsed.map((s) => ({ ...s })),
+                    { ...spell },
+                ]
                 let nextMana = remainingMana - spell.cost + effects.mana
                 let nextHp = remainingHp + effects.heal
                 let nextBossHp = remainingBossHp - effects.damage - spell.damage
