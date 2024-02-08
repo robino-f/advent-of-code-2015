@@ -4,7 +4,18 @@ settings:
     autoInstallPeers: true
     excludeLinksFromLockfile: false
 
+dependencies:
+    lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+    lodash.combinations:
+        specifier: ^18.11.1
+        version: 18.11.1(@types/lodash@4.14.202)(lodash@4.17.21)
+
 devDependencies:
+    '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.14.202
     '@types/node':
         specifier: ^20.11.0
         version: 20.11.0
@@ -150,6 +161,12 @@ packages:
                 integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==,
             }
         dev: true
+
+    /@types/lodash@4.14.202:
+        resolution:
+            {
+                integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==,
+            }
 
     /@types/node@20.11.0:
         resolution:
@@ -986,12 +1003,35 @@ packages:
             p-locate: 5.0.0
         dev: true
 
+    /lodash.combinations@18.11.1(@types/lodash@4.14.202)(lodash@4.17.21):
+        resolution:
+            {
+                integrity: sha512-0jtulyUQA1My13JuMR23MHqsMk8pQswcy+fO0jTKRp41bi+dDWflv/Ct4qRW6CcbLkk2Qi3PZyzx+tqgqSYLug==,
+            }
+        peerDependencies:
+            '@types/lodash': ^4
+            lodash: ^4
+        peerDependenciesMeta:
+            '@types/lodash':
+                optional: true
+        dependencies:
+            '@types/lodash': 4.14.202
+            lodash: 4.17.21
+        dev: false
+
     /lodash.merge@4.6.2:
         resolution:
             {
                 integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==,
             }
         dev: true
+
+    /lodash@4.17.21:
+        resolution:
+            {
+                integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==,
+            }
+        dev: false
 
     /lru-cache@6.0.0:
         resolution:

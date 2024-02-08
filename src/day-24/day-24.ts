@@ -1,3 +1,5 @@
+import 'lodash.combinations'
+import _ from 'lodash'
 import { readFile } from '../utils/read-file'
 import { sum } from '../utils/array'
 
@@ -7,45 +9,39 @@ class Day24 {
     maxWeight = 0
     maxGroupSize = 100
 
-    getCombinations(
-        packages: number[],
-        combination: number[] = []
-    ): Set<string> {
-        if (combination.length > this.maxGroupSize) return new Set()
-        const combinationSum = sum(combination)
-        if (combinationSum === this.maxWeight) {
-            if (this.maxGroupSize > combination.length) {
-                this.maxGroupSize = combination.length
-            }
-            return new Set([combination.sort().join()])
-        }
-
-        const combinations = new Set<string>()
-        for (const p of packages) {
-            const nextCombination = [...combination, p]
-            if (sum(nextCombination) <= this.maxWeight) {
-                Array.from(
-                    this.getCombinations(
-                        packages.filter((v) => v !== p),
-                        nextCombination
-                    )
-                ).forEach((c) => combinations.add(c))
-            }
-        }
-
-        return combinations
-    }
-
     solve(values: string[], part1: boolean = true): number {
         const packages = values.map(Number).sort((a, b) => (a > b ? -1 : 1))
-        this.maxWeight = sum(packages) / (part1 ? 3 : 4)
+        const divider = part1 ? 3 : 4
+        this.maxWeight = sum(packages) / divider
+        const combinations = (
+            _ as unknown as { combinations: Function }
+        ).combinations(packages, Math.round(packages.length / divider) - 2)
 
-        const combinations = Array.from(this.getCombinations(packages)).map(
-            (c) => c.split(',').map(Number)
+        let validCombinations: number[][] = []
+        for (const combination of combinations) {
+            let sum = 0
+            let nextCombination: number[] = []
+            for (let i = 0; i < combination.length; i += 1) {
+                if (sum + combination[i] <= this.maxWeight) {
+                    nextCombination.push(combination[i])
+                    sum += combination[i]
+                    if (sum === this.maxWeight) break
+                }
+            }
+            if (sum === this.maxWeight) {
+                validCombinations.push(nextCombination)
+            }
+        }
+
+        validCombinations = validCombinations.sort((a, b) =>
+            a.length > b.length ? 1 : -1
+        )
+        validCombinations = validCombinations.filter(
+            (v) => v.length === validCombinations[0].length
         )
 
         return Math.min(
-            ...combinations.map((cc) => cc.reduce((acc, v) => acc * v, 1))
+            ...validCombinations.map((vc) => vc.reduce((acc, v) => acc * v, 1))
         )
     }
 }
